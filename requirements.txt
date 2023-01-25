@@ -13,5 +13,4 @@ streamlit==1.17.0
 soundfile
 cffi
 pycparser
-libsndfile1-dev
 ffmpeg
