@@ -14,4 +14,4 @@ soundfile
 cffi
 pycparser
 ffmpeg
-scipy.io
+scipy
