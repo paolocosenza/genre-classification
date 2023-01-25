@@ -18,7 +18,7 @@ def run():
     video_info = youtube_dl.YoutubeDL().extract_info(
         url = video_url,download=False
     )
-    filename = "predict.ogg"
+    filename = "predict.wav"
     options={
         'format':'bestaudio/best',
         'keepvideo':False,
@@ -33,7 +33,7 @@ def run():
 if __name__=='__main__':
     run()
 
-signal, sr = librosa.load("predict.ogg")
+signal, sr = librosa.load("predict.wav")
 
 # this is the number of samples in a window per fft
 n_fft = 2048
