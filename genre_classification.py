@@ -14,21 +14,18 @@ filename = "predict.wav"
 def extract_audio_from_yt_video(url):
     
     filename = "yt_download_" + url[-11:] + ".mp3"
-    try:
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': filename,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-            }],
-        }
-        with st.spinner("We are extracting the audio from the video"):
-            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': filename,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+        }],
+    }
+    with st.spinner("We are extracting the audio from the video"):
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
     # Handle DownloadError: ERROR: unable to download video data: HTTP Error 403: Forbidden / happens sometimes
-    except DownloadError:
-        filename = None
     return filename
 
 url = st.text_input("Enter the YouTube video URL then press Enter to confirm!")
