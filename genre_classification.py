@@ -14,24 +14,38 @@ temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 filename = "predict.wav"
 
-def run():
-    video_url = st.text_input('Please enter youtube video url: ')
-    video_info = youtube_dl.YoutubeDL().extract_info(
-        url = video_url,download=False
-    )
-    options={
-        'format':'bestaudio/best',
-        'keepvideo':False,
-        'outtmpl':filename,
-    }
+def extract_audio_from_yt_video(url):
+    
+    filename = "yt_download_" + url[-11:] + ".mp3"
+    try:
 
-    with youtube_dl.YoutubeDL(options) as ydl:
-        ydl.download([video_info['webpage_url']])
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'outtmpl': filename,
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+            }],
+        }
+        with st.spinner("We are extracting the audio from the video"):
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
 
-    print("Download complete!")
+    # Handle DownloadError: ERROR: unable to download video data: HTTP Error 403: Forbidden / happens sometimes
+    except DownloadError:
+        filename = None
 
-if __name__=='__main__':
-    run()
+    return filename
+
+url = st.text_input("Enter the YouTube video URL then press Enter to confirm!")
+    
+ # If link seems correct, we try to transcribe
+ if "youtu" in url:
+     filename = extract_audio_from_yt_video(url)
+     if filename is not None:
+         transcription(stt_tokenizer, stt_model, filename)
+     else:
+         st.error("We were unable to extract the audio. Please verify your link, retry or choose another video")
 
 signal, _ = librosa.load(filename, sr=16000)
 
