@@ -1,0 +1,12 @@
+librosa
+numpy
+numpydoc
+matplotlib
+matplotlib-inline
+ipython
+ipython-genutils
+pathlib
+fastai==2.7.10
+ipywidgets
+youtube-dl==2021.12.17
+streamlit==1.17.0
