@@ -246,7 +246,6 @@ pycodestyle
 pycosat==0.6.3
 pycparser 
 pyct 
-pycurl==7.45.1
 pydantic==1.10.4
 pydeck==0.8.0
 PyDispatcher==2.0.5
