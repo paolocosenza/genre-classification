@@ -1,4 +1,4 @@
-librosa
+librosa==0.9.1
 numpy
 numpydoc
 matplotlib
