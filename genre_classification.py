@@ -11,34 +11,28 @@ import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 filename = "predict.wav"
-def extract_audio_from_yt_video(url):
-    
-    filename = "yt_download_" + url[-11:] + ".mp3"
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'outtmpl': filename,
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-        }],
+
+def run():
+    video_url = st.text_input('Please enter youtube video url: ')
+    video_info = youtube_dl.YoutubeDL().extract_info(
+        url = video_url,download=False
+    )
+    filename = "predict.ogg"
+    options={
+        'format':'bestaudio/best',
+        'keepvideo':False,
+        'outtmpl':filename,
     }
-    with st.spinner("We are extracting the audio from the video"):
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-    # Handle DownloadError: ERROR: unable to download video data: HTTP Error 403: Forbidden / happens sometimes
-    return filename
 
-url = st.text_input("Enter the YouTube video URL then press Enter to confirm!")
-    
-# If link seems correct, we try to transcribe
-if "youtu" in url:
-    filename = extract_audio_from_yt_video(url)
-    if filename is not None:
-        transcription(stt_tokenizer, stt_model, filename)
-    else:
-        st.error("We were unable to extract the audio. Please verify your link, retry or choose another video")
+    with youtube_dl.YoutubeDL(options) as ydl:
+        ydl.download([video_info['webpage_url']])
 
-signal, _ = librosa.load(filename, sr=16000)
+    print("Download complete!")
+
+if __name__=='__main__':
+    run()
+
+signal, sr = librosa.load("predict.ogg")
 
 # this is the number of samples in a window per fft
 n_fft = 2048
@@ -55,8 +49,12 @@ plt.figure(figsize=(4.32, 2.88))
 # Using librosa.display.specshow() to create our spectrogram
 librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
 plt.savefig('predict.png')
+
 learn_inf = load_learner('export.pkl')
+
 pred,pred_idx,probs = learn_inf.predict('predict.png')
+
 img = Image.open("predict.png")
 st.image(img)
+
 st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
