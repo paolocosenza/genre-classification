@@ -35,7 +35,7 @@ def run():
 if __name__=='__main__':
     run()
 
-samplerate, data = sio.wavfile.read(location_of_file)
+samplerate, data = sio.wavfile.read("predict.wav")
 
 signal, sr = librosa.load(data)
 
