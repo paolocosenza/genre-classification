@@ -64,14 +64,6 @@ cloudpickle
 colorama==0.4.6
 colorcet 
 comtypes==1.1.10
-conda==23.1.0
-conda-build==3.22.0
-conda-content-trust 
-conda-pack 
-conda-package-handling 
-conda-repo-cli==1.0.20
-conda-token 
-conda-verify==3.4.2
 confection==0.0.4
 constantly==15.1.0
 cookiecutter 
