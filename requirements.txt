@@ -14,5 +14,3 @@ soundfile
 cffi
 pycparser
 ffmpeg
-usb.core 
-usb.backend.libusb1
