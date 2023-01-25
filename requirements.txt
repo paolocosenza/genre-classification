@@ -335,7 +335,6 @@ streamlit==1.17.0
 sympy 
 tables==3.6.1
 tabulate 
-TBB==0.2
 tblib 
 tenacity 
 termcolor==1.1.0
