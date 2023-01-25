@@ -300,7 +300,6 @@ ruamel.yaml.clib
 s3transfer 
 scikit-image 
 scikit-learn 
-scikit-learn-intelex==2021.20221004.171935
 scipy==1.9.1
 Scrapy 
 seaborn 
