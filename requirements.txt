@@ -191,7 +191,6 @@ multipledispatch
 munkres==1.1.4
 murmurhash==1.0.9
 mypy-extensions==0.4.3
-navigator-updater==0.3.0
 nb-conda-kernels 
 nbclassic 
 nbclient 
