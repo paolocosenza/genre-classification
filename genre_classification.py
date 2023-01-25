@@ -33,7 +33,7 @@ def run():
 if __name__=='__main__':
     run()
 
-signal, sr = librosa.load("predict.wav")
+signal, _ = librosa.load(filename, sr=16000)
 
 # this is the number of samples in a window per fft
 n_fft = 2048
