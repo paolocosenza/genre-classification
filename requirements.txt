@@ -278,7 +278,6 @@ pytz-deprecation-shim==0.1.0.post0
 pyviz-comms 
 PyWavelets 
 pywin32-ctypes 
-pywinpty 
 PyYAML==6.0
 pyzmq 
 QDarkStyle 
