@@ -7,7 +7,6 @@ from pathlib import Path
 from fastai.vision.all import *
 from ipywidgets import widgets
 import youtube_dl
-from youtube_dl import DownloadError
 import streamlit as st
 
 import pathlib
@@ -18,23 +17,17 @@ filename = "predict.wav"
 def extract_audio_from_yt_video(url):
     
     filename = "yt_download_" + url[-11:] + ".mp3"
-    try:
-
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': filename,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-            }],
-        }
-        with st.spinner("We are extracting the audio from the video"):
-            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
-
-    # Handle DownloadError: ERROR: unable to download video data: HTTP Error 403: Forbidden / happens sometimes
-    except DownloadError:
-        filename = None
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': filename,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+        }],
+    }
+    with st.spinner("We are extracting the audio from the video"):
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
 
     return filename
 
