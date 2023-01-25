@@ -16,27 +16,21 @@ pathlib.PosixPath = pathlib.WindowsPath
 
 check = 0
 
-def run():
-    while check == 0:
-        video_url = st.text_input('Please enter youtube video url: ')
-        if len(video_url) != 0: check = 1
-        video_info = youtube_dl.YoutubeDL().extract_info(
+while check == 0:
+    video_url = st.text_input('Please enter youtube video url: ')
+    if len(video_url) != 0: check = 1
+    video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-        filename = "predict.wav"
-        options={
+    filename = "predict.wav"
+    options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
 
-        with youtube_dl.YoutubeDL(options) as ydl:
-            ydl.download([video_info['webpage_url']])
-
-        print("Download complete!")
-
-if __name__=='__main__':
-    run()
+    with youtube_dl.YoutubeDL(options) as ydl:
+        ydl.download([video_info['webpage_url']])
 
 samplerate, data = sio.wavfile.read("predict.wav")
 
