@@ -191,7 +191,6 @@ multipledispatch
 munkres==1.1.4
 murmurhash==1.0.9
 mypy-extensions==0.4.3
-nb-conda-kernels 
 nbclassic 
 nbclient 
 nbconvert 
@@ -399,5 +398,4 @@ yapf
 youtube-dl==2021.12.17
 zict==2.1.0
 zipp 
-zope.interface 
-1
+zope.interface
