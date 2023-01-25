@@ -307,7 +307,6 @@ selenium==4.7.2
 semver==2.13.0
 Send2Trash 
 service-identity 
-sip==4.19.13
 six 
 smart-open 
 smmap==5.0.0
