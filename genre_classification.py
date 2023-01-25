@@ -19,17 +19,17 @@ def run():
         video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-            filename = "predict.ogg"
-            options={
+        filename = "predict.ogg"
+        options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
 
-                with youtube_dl.YoutubeDL(options) as ydl:
-                    ydl.download([video_info['webpage_url']])
+        with youtube_dl.YoutubeDL(options) as ydl:
+        ydl.download([video_info['webpage_url']])
 
-                    print("Download complete!")
+        print("Download complete!")
 
 if __name__=='__main__':
     run()
