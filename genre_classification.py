@@ -39,13 +39,13 @@ def extract_audio_from_yt_video(url):
 
 url = st.text_input("Enter the YouTube video URL then press Enter to confirm!")
     
- # If link seems correct, we try to transcribe
- if "youtu" in url:
-     filename = extract_audio_from_yt_video(url)
-     if filename is not None:
-         transcription(stt_tokenizer, stt_model, filename)
-     else:
-         st.error("We were unable to extract the audio. Please verify your link, retry or choose another video")
+# If link seems correct, we try to transcribe
+if "youtu" in url:
+    filename = extract_audio_from_yt_video(url)
+    if filename is not None:
+        transcription(stt_tokenizer, stt_model, filename)
+    else:
+        st.error("We were unable to extract the audio. Please verify your link, retry or choose another video")
 
 signal, _ = librosa.load(filename, sr=16000)
 
