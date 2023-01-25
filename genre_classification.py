@@ -12,13 +12,13 @@ import streamlit as st
 import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
+filename = "predict.wav"
 
 def run():
     video_url = st.text_input('Please enter youtube video url: ')
     video_info = youtube_dl.YoutubeDL().extract_info(
         url = video_url,download=False
     )
-    filename = "predict.wav"
     options={
         'format':'bestaudio/best',
         'keepvideo':False,
