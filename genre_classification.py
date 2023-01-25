@@ -27,7 +27,7 @@ def run():
                 }
 
         with youtube_dl.YoutubeDL(options) as ydl:
-        ydl.download([video_info['webpage_url']])
+            ydl.download([video_info['webpage_url']])
 
         print("Download complete!")
 
