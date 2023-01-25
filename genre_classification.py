@@ -8,6 +8,7 @@ from fastai.vision.all import *
 from ipywidgets import widgets
 import youtube_dl
 import streamlit as st
+import scipy.io as sio
 
 import pathlib
 temp = pathlib.PosixPath
@@ -15,26 +16,28 @@ pathlib.PosixPath = pathlib.WindowsPath
 
 def run():
     video_url = st.text_input('Please enter youtube video url: ')
-    if len(video_url) != 0:
+    if video_url not '':
         video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-        filename = "predict.ogg"
-        options={
+            filename = "predict.wav"
+            options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
 
-        with youtube_dl.YoutubeDL(options) as ydl:
-            ydl.download([video_info['webpage_url']])
+                with youtube_dl.YoutubeDL(options) as ydl:
+                    ydl.download([video_info['webpage_url']])
 
-        print("Download complete!")
+                    print("Download complete!")
 
 if __name__=='__main__':
     run()
 
-signal, sr = librosa.load("predict.ogg")
+samplerate, data = sio.wavfile.read(location_of_file)
+
+signal, sr = librosa.load(data)
 
 # this is the number of samples in a window per fft
 n_fft = 2048
