@@ -13,7 +13,6 @@ streamlit==1.17.0
 soundfile
 cffi
 pycparser
-libgtk2.0-dev
 libasound2-dev
 libsndfile1-dev
 ffmpeg
