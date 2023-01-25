@@ -7,6 +7,7 @@ from pathlib import Path
 from fastai.vision.all import *
 from ipywidgets import widgets
 import youtube_dl
+from youtube_dl import DownloadError
 import streamlit as st
 
 import pathlib
