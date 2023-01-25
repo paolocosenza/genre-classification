@@ -32,9 +32,9 @@ while check == 0:
     with youtube_dl.YoutubeDL(options) as ydl:
         ydl.download([video_info['webpage_url']])
 
-samplerate, data = sio.wavfile.read("predict.wav")
+# samplerate, data = sio.wavfile.read("predict.wav")
 
-signal, sr = librosa.load(data)
+signal, sr = librosa.load(filename)
 
 # this is the number of samples in a window per fft
 n_fft = 2048
