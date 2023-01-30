@@ -16,4 +16,4 @@ cffi
 pycparser
 ffmpeg
 scipy
-PyGObject
+PyGObject==3.30.4
