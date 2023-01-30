@@ -16,17 +16,31 @@ def run(video_url, filename):
     video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-
-    options={
+    try:
+        options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
-    st.write('Downloading song, please wait...')
-    with youtube_dl.YoutubeDL(options) as ydl:
-        ydl.download([video_info['webpage_url']])
+        st.write('Downloading song, please wait...')
+        with youtube_dl.YoutubeDL(options) as ydl:
+            ydl.download([video_info['webpage_url']])
+    except:
+        st.write('Video unavailable')
+        
+def footer():
+    myargs = [
+        "Made in ",
+        image('https://avatars3.githubusercontent.com/u/45109972?s=400&v=4',
+              width=px(25), height=px(25)),
+        " by ",
+        link("github.com/paolocosenza", "Paolo Cosenza"),
+    ]
+    layout(*myargs)
 
 if __name__=='__main__':
+    st.title('Music genre classifier')
+    footer()
     filename = "predict.wav"
     
     video_url = st.text_input('Please enter youtube video url: ')
