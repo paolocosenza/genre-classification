@@ -136,7 +136,7 @@ if __name__=='__main__':
             st.write("Song correctly downloaded! Here's the spectrogram:")
             st.image(img)
             if probs[pred_idx] <= 0.5: 
-                st.write("I'm not really sure about the genre of this track, but it may be" + pred)
+                st.write("I'm not really sure about the genre of this track, but it may be " + pred + " (" + probs[pred_idx] + " probability).")
             else:
                 st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.wav')
