@@ -64,7 +64,6 @@ st.markdown(footer,unsafe_allow_html=True)
 
 if __name__=='__main__':
     st.title('Music genre classifier')
-    footer()
     filename = "predict.wav"
     
     video_url = st.text_input('Please enter a YouTube video URL: ')
