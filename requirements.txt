@@ -1,4 +1,4 @@
-librosa==0.9.1
+librosa
 numpy
 numpydoc
 matplotlib
@@ -16,4 +16,4 @@ cffi
 pycparser
 ffmpeg
 scipy
-PyGObject==3.30.4
+PyGObject
