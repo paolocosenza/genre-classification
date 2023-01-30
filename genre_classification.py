@@ -113,7 +113,7 @@ if __name__=='__main__':
             run(video_url, filename)
         except : 
             st.write('Video unavailable')
-            video_url = ''
+            break
             
         signal, sr = librosa.load(filename)
 
