@@ -108,8 +108,10 @@ if __name__=='__main__':
     video_url = st.text_input('Please enter youtube video url: ')
     
     if len(video_url) != 0: 
-        run(video_url, filename)
-
+        
+        try : run(video_url, filename)
+        except : st.write('Video unavailable')
+            
         signal, sr = librosa.load(filename)
 
         # this is the number of samples in a window per fft
