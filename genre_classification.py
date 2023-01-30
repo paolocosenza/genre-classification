@@ -16,11 +16,10 @@ from htbuilder.funcs import rgba, rgb
 
 def run(video_url, filename):
 
-
-    video_info = youtube_dl.YoutubeDL().extract_info(
+    try:
+        video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-    try:
         options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
