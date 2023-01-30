@@ -29,7 +29,7 @@ def run(video_url, filename):
         with youtube_dl.YoutubeDL(options) as ydl:
             ydl.download([video_info['webpage_url']])
     except:
-        st.write('Video unavailable')
+        st.write('Video unavailable. Please try again with a different URL.')
         return 1
 
 def image(src_as_string, **style):
@@ -105,7 +105,7 @@ if __name__=='__main__':
     footer()
     filename = "predict.wav"
     
-    video_url = st.text_input('Please enter youtube video url: ')
+    video_url = st.text_input('Please enter a YouTube video URL: ')
     
     if len(video_url) != 0: 
         if run(video_url, filename) != 1:
@@ -135,7 +135,9 @@ if __name__=='__main__':
             img = Image.open("predict.png")
             st.write("Song correctly downloaded! Here's the spectrogram:")
             st.image(img)
-
-            st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
+            if probs[pred_idx] <= 0.5: 
+                st.write("I'm not really sure about the genre of this track, but it may be" + pred)
+            else:
+                st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.wav')
             os.remove('predict.png')
