@@ -16,4 +16,3 @@ cffi
 pycparser
 ffmpeg
 scipy
-libsndfile
