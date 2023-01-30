@@ -17,4 +17,4 @@ pycparser
 ffmpeg
 scipy
 # PyGObject
-gstreamer-1.0
+gstreamer
