@@ -32,38 +32,77 @@ def run(video_url, filename):
         st.write('Video unavailable. Please try again with a different URL.')
         return 1
 
-footer="""<style>
-a:link , a:visited{
-color: blue;
-background-color: transparent;
-text-decoration: underline;
-}
+def image(src_as_string, **style):
+    return img(src=src_as_string, style=styles(**style))
 
-a:hover,  a:active {
-color: red;
-background-color: transparent;
-text-decoration: underline;
-}
 
-.footer {
-position: fixed;
-left: 0;
-bottom: 0;
-width: 100%;
-background-color: white;
-color: black;
-text-align: center;
-}
-</style>
-<div class="footer">
-<p>Developed by <a style='display: block; text-align: center;' href="https://github.com/paolocosenza" target="_blank">Paolo Cosenza</a></p>
-</div>
-"""
+def link(link, text, **style):
+    return a(_href=link, _target="_blank", style=styles(**style))(text)
 
-st.markdown(footer,unsafe_allow_html=True)
+
+def layout(*args):
+
+    style = """
+    <style>
+      # MainMenu {visibility: hidden;}
+      footer {visibility: hidden;}
+     .stApp { bottom: 105px; }
+    </style>
+    """
+
+    style_div = styles(
+        position="fixed",
+        left=0,
+        bottom=0,
+        margin=px(0, 0, 0, 0),
+        width=percent(100),
+        color="black",
+        text_align="center",
+        height="auto",
+        opacity=1
+    )
+
+    style_hr = styles(
+        display="block",
+        margin=px(8, 8, "auto", "auto"),
+        border_style="inset",
+        border_width=px(2)
+    )
+
+    body = p()
+    foot = div(
+        style=style_div
+    )(
+        hr(
+            style=style_hr
+        ),
+        body
+    )
+
+    st.markdown(style, unsafe_allow_html=True)
+
+    for arg in args:
+        if isinstance(arg, str):
+            body(arg)
+
+        elif isinstance(arg, HtmlElement):
+            body(arg)
+
+    st.markdown(str(foot), unsafe_allow_html=True)
+
+def footer():
+    myargs = [
+        "Made in ",
+        image('https://avatars3.githubusercontent.com/u/45109972?s=400&v=4',
+              width=px(25), height=px(25)),
+        " by ",
+        "<a href=https://github.com/paolocosenza>Paolo Cosenza</a>"
+    ]
+    layout(*myargs)
 
 if __name__=='__main__':
     st.title('Music genre classifier')
+    footer()
     filename = "predict.wav"
     
     video_url = st.text_input('Please enter a YouTube video URL: ')
@@ -97,7 +136,7 @@ if __name__=='__main__':
             st.write("Song correctly downloaded! Here's the spectrogram:")
             st.image(img)
             if probs[pred_idx] <= 0.5: 
-                st.write("I'm not really sure about the genre of this track, but it may be " + pred + " (" + str(round(float(probs[pred_idx])*100)) + " probability).")
+                st.write("I'm not really sure about the genre of this track, but it may be " + pred + " (" + str(round(float(probs[pred_idx])*100)) + "% probability).")
             else:
                 st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.wav')
