@@ -14,11 +14,7 @@ import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 
-check = 0
-
-while check == 0:
-    video_url = st.text_input('Please enter youtube video url: ')
-    if len(video_url) == "https://www.youtube.com/watch?v=DfAt73ru258": check = 1
+video_url = st.text_input('Please enter youtube video url: ')
         
 video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
