@@ -109,8 +109,11 @@ if __name__=='__main__':
     
     if len(video_url) != 0: 
         
-        try : run(video_url, filename)
-        except : st.write('Video unavailable')
+        try : 
+            run(video_url, filename)
+        except : 
+            st.write('Video unavailable')
+            video_url = ''
             
         signal, sr = librosa.load(filename)
 
