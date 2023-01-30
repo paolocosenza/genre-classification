@@ -14,13 +14,13 @@ import scipy.io as sio
 # temp = pathlib.PosixPath
 # pathlib.PosixPath = pathlib.WindowsPath
 
-def run():
+def run(filename):
     video_url = st.text_input('Please enter youtube video url: ')
 
     video_info = youtube_dl.YoutubeDL().extract_info(
             url = video_url,download=False
             )
-    filename = "predict.wav"
+
     options={
                 'format':'bestaudio/best',
                 'keepvideo':False,
@@ -31,7 +31,8 @@ def run():
         ydl.download([video_info['webpage_url']])
 
 if __name__=='__main__':
-    run()
+    filename = "predict.wav"
+    run(filename)
 
     signal, sr = librosa.load(filename)
 
