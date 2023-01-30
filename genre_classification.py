@@ -108,8 +108,6 @@ if __name__=='__main__':
     video_url = st.text_input('Please enter youtube video url: ')
     
     if len(video_url) != 0: 
-        run(video_url, filename)
-        
         if run(video_url, filename) != 1:
             
             signal, sr = librosa.load(filename)
