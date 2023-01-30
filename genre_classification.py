@@ -22,7 +22,7 @@ def run(filename):
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
-
+    st.write('Downloading song, please wait...')
     with youtube_dl.YoutubeDL(options) as ydl:
         ydl.download([video_info['webpage_url']])
 
@@ -53,6 +53,7 @@ if __name__=='__main__':
     pred,pred_idx,probs = learn_inf.predict('predict.png')
 
     img = Image.open("predict.png")
+    st.write("Song correctly downloaded! Here's the spectrogram:")
     st.image(img)
 
     st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
