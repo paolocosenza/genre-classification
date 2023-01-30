@@ -16,3 +16,4 @@ cffi
 pycparser
 ffmpeg
 scipy
+htbuilder
