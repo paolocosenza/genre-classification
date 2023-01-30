@@ -29,7 +29,7 @@ options={
 with youtube_dl.YoutubeDL(options) as ydl:
     ydl.download([video_info['webpage_url']])
 
-signal, sr = sio.wavfile.read(filename)
+signal, sr = librosa.load(filename)
 
 # this is the number of samples in a window per fft
 n_fft = 2048
