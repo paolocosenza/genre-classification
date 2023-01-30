@@ -91,7 +91,6 @@ def layout(*args):
     st.markdown(str(foot), unsafe_allow_html=True)
     
 def footer():
-    link = 
     myargs = [
         "Made in ",
         image('https://avatars3.githubusercontent.com/u/45109972?s=400&v=4',
