@@ -31,6 +31,7 @@ def run(video_url, filename):
             ydl.download([video_info['webpage_url']])
     except:
         st.write('Video unavailable')
+        return 1
 
 def image(src_as_string, **style):
     return img(src=src_as_string, style=styles(**style))
@@ -108,39 +109,36 @@ if __name__=='__main__':
     video_url = st.text_input('Please enter youtube video url: ')
     
     if len(video_url) != 0: 
+        run(video_url, filename)
         
-        try : 
-            run(video_url, filename)
-        except : 
-            st.write('Video unavailable')
-            break
+        if run(video_url, filename) != 1:
             
-        signal, sr = librosa.load(filename)
+            signal, sr = librosa.load(filename)
 
-        # this is the number of samples in a window per fft
-        n_fft = 2048
-        # The amount of samples we are shifting after each fft
-        hop_length = 512
-        # Short-time Fourier Transformation on our audio data
-        audio_stft = librosa.core.stft(signal, hop_length=hop_length, n_fft=n_fft)
-        # gathering the absolute values for all values in our audio_stft
-        spectrogram = np.abs(audio_stft)
-        # Converting the amplitude to decibels
-        log_spectro = librosa.amplitude_to_db(spectrogram)
-        # Plotting the short-time Fourier Transformation
-        plt.figure(figsize=(4.32, 2.88))
-        # Using librosa.display.specshow() to create our spectrogram
-        librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
-        plt.savefig('predict.png')
+            # this is the number of samples in a window per fft
+            n_fft = 2048
+            # The amount of samples we are shifting after each fft
+            hop_length = 512
+            # Short-time Fourier Transformation on our audio data
+            audio_stft = librosa.core.stft(signal, hop_length=hop_length, n_fft=n_fft)
+            # gathering the absolute values for all values in our audio_stft
+            spectrogram = np.abs(audio_stft)
+            # Converting the amplitude to decibels
+            log_spectro = librosa.amplitude_to_db(spectrogram)
+            # Plotting the short-time Fourier Transformation
+            plt.figure(figsize=(4.32, 2.88))
+            # Using librosa.display.specshow() to create our spectrogram
+            librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
+            plt.savefig('predict.png')
 
-        learn_inf = load_learner('export.pkl')
+            learn_inf = load_learner('export.pkl')
 
-        pred,pred_idx,probs = learn_inf.predict('predict.png')
+            pred,pred_idx,probs = learn_inf.predict('predict.png')
 
-        img = Image.open("predict.png")
-        st.write("Song correctly downloaded! Here's the spectrogram:")
-        st.image(img)
+            img = Image.open("predict.png")
+            st.write("Song correctly downloaded! Here's the spectrogram:")
+            st.image(img)
 
-        st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
-        os.remove('predict.wav')
-        os.remove('predict.png')
+            st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
+            os.remove('predict.wav')
+            os.remove('predict.png')
