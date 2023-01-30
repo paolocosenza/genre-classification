@@ -1,20 +1,14 @@
 import librosa, librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
-!pip install os
 import os
 
 from IPython.display import Image
-# from pathlib import Path
 from fastai.vision.all import *
 from ipywidgets import widgets
 import youtube_dl
 import streamlit as st
 import scipy.io as sio
-
-# import pathlib
-# temp = pathlib.PosixPath
-# pathlib.PosixPath = pathlib.WindowsPath
 
 def run(filename):
     video_url = st.text_input('Please enter youtube video url: ')
@@ -62,3 +56,5 @@ if __name__=='__main__':
     st.image(img)
 
     st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability')
+    os.remove('predict.wav')
+    os.remove('predict.png')
