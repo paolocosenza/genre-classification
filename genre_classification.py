@@ -103,7 +103,7 @@ def footer():
 if __name__=='__main__':
     st.title('Music genre classifier')
     footer()
-    filename = "predict.wav"
+    filename = "predict.mp3"
     
     video_url = st.text_input('Please enter a YouTube video URL: ')
     
@@ -137,5 +137,5 @@ if __name__=='__main__':
             st.image(img)
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
-            os.remove('predict.wav')
+            os.remove('predict.mp3')
             os.remove('predict.png')
