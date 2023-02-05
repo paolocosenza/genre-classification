@@ -1,6 +1,7 @@
 import librosa, librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.express as px
 import os
 
 from IPython.display import Image
