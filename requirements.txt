@@ -17,3 +17,4 @@ pycparser
 ffmpeg
 scipy
 htbuilder
+plotly
