@@ -145,7 +145,7 @@ if __name__=='__main__':
             st.plotly_chart(fig, use_container_width=True)
 
             st.write("Here's the spectrogram I used to classify the song:")
-            img = Image.open("spectrogram.png", width = 150)
+            img = Image.open("spectrogram.png")
             col1, col2, col3 = st.columns([0.2, 5, 0.2])
             col2.image(img, use_column_width=True)
                      
