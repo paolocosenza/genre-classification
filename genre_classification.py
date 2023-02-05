@@ -135,8 +135,14 @@ if __name__=='__main__':
             pred,pred_idx,probs = learn_inf.predict('predict.png')
 
             img = Image.open("predict.png")
-            st.write("Song correctly downloaded! Here's the spectrogram:")
+            st.write("Song correctly downloaded! Here's the spectrogram I used to classify the song:")
             st.image(img)
+
+            df = pd.DataFrame(dict(
+                r=probs,
+                theta=['blues','classical','country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']))
+            fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+            fig.show()
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.mp3')
