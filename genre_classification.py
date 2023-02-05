@@ -130,15 +130,14 @@ if __name__=='__main__':
             # Using librosa.display.specshow() to create our spectrogram
             librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
             plt.savefig('spectrogram.png')
-            st.pyplot(fig)
+
 
             learn_inf = load_learner('export.pkl')
 
             pred,pred_idx,probs = learn_inf.predict('spectrogram.png')
 
-            img = Image.open("spectrogram.png")
             st.write("Song correctly downloaded! Here's the spectrogram I used to classify the song:")
-            st.image(img)
+            st.pyplot(fig)
 
             df = pd.DataFrame(dict(
                 r=probs,
@@ -148,5 +147,4 @@ if __name__=='__main__':
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.mp3')
-            os.remove('predict.png')
             os.remove('spectrogram.png')
