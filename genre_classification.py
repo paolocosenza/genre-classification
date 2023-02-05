@@ -126,11 +126,11 @@ if __name__=='__main__':
             # Converting the amplitude to decibels
             log_spectro = librosa.amplitude_to_db(spectrogram)
             # Plotting the short-time Fourier Transformation
-            plt.figure(figsize=(4.32, 2.88))
+            fig=plt.figure(figsize=(4.32, 2.88))
             # Using librosa.display.specshow() to create our spectrogram
             librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
             plt.savefig('spectrogram.png')
-            st.pyplot(figure)
+            st.pyplot(fig)
 
             learn_inf = load_learner('export.pkl')
 
