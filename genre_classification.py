@@ -145,7 +145,9 @@ if __name__=='__main__':
             st.plotly_chart(fig, use_container_width=True)
 
             st.write("Here's the spectrogram I used to classify the song:")
-            st.pyplot(spec)
+            img = Image.open("spectrogram.png")
+            st.write("Song correctly downloaded! Here's the spectrogram I used to classify the song:")
+            st.image(img)
                      
             os.remove('predict.mp3')
             os.remove('spectrogram.png')
