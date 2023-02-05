@@ -26,7 +26,7 @@ def run(video_url, filename):
                 'keepvideo':False,
                 'outtmpl':filename,
                 }
-        st.write('Downloading song, please wait...')
+        st.write('Downloading song, this may take some time...')
         with youtube_dl.YoutubeDL(options) as ydl:
             ydl.download([video_info['webpage_url']])
     except:
