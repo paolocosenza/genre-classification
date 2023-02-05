@@ -146,7 +146,7 @@ if __name__=='__main__':
 
             st.write("Here's the spectrogram I used to classify the song:")
             img = Image.open("spectrogram.png")
-            col1, col2, col3 = st.columns([0.2, 5, 0.2])
+            col1, col2, col3 = st.columns([0.25, 4, 0.25])
             col2.image(img, use_column_width=True)
                      
             os.remove('predict.mp3')
