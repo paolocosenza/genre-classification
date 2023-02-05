@@ -146,7 +146,6 @@ if __name__=='__main__':
 
             st.write("Here's the spectrogram I used to classify the song:")
             img = Image.open("spectrogram.png")
-            st.write("Song correctly downloaded! Here's the spectrogram I used to classify the song:")
             st.image(img)
                      
             os.remove('predict.mp3')
