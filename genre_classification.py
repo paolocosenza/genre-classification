@@ -129,7 +129,7 @@ if __name__=='__main__':
             plt.figure(figsize=(4.32, 2.88))
             # Using librosa.display.specshow() to create our spectrogram
             librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
-            plt.savefig('predict.png')
+            plt.savefig('spectrogram.png')
 
             learn_inf = load_learner('export.pkl')
 
