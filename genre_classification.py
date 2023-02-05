@@ -102,6 +102,8 @@ def footer():
 
 if __name__=='__main__':
     st.title('Music genre classifier')
+    link = '[GitHub](https://github.com/paolocosenza/music-genre-classification#how-does-it-work)'
+    st.markdown(link, unsafe_allow_html=True)
     footer()
     filename = "predict.mp3"
     
