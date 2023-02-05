@@ -7,5 +7,6 @@ Web application project containing a simple music genre classifier trained on th
 <h3>How does it work?</h3>
 Neural network-backed computer vision can be used to recognize patterns and similarities in music spectrograms as well.
 By converting a YouTube song into a spectrogram that has the same features of those contained in the GTZAN Dataset, we can make predictions about its genre.
-
+<br />
+<br />
 ![genres](images/genres.png)
