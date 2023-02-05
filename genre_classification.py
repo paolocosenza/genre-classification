@@ -130,6 +130,7 @@ if __name__=='__main__':
             # Using librosa.display.specshow() to create our spectrogram
             librosa.display.specshow(log_spectro, sr=sr, hop_length=hop_length, cmap='magma')
             plt.savefig('spectrogram.png')
+            st.pyplot(fig)
 
             learn_inf = load_learner('export.pkl')
 
@@ -143,9 +144,6 @@ if __name__=='__main__':
                 r=probs,
                 theta=['blues','classical','country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']))
             fig = plotly.express.line_polar(df, r='r', theta='theta', line_close=True)
-            #fig.savefig('predict.png')
-            #img2 = Image.open("predict.png")
-            #st.image(fig.show())
             st.plotly_chart(fig, use_container_width=True)
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
