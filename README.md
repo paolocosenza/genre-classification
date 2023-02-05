@@ -9,4 +9,5 @@ Neural network-backed computer vision can be used to recognize patterns and simi
 By converting a YouTube song into a spectrogram that has the same features of those contained in the GTZAN Dataset, we can make predictions about its genre.
 <br />
 <br />
+
 ![genres](images/genres.png)
