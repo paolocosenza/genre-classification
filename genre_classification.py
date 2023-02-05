@@ -145,7 +145,8 @@ if __name__=='__main__':
             fig = plotly.express.line_polar(df, r='r', theta='theta', line_close=True)
             #fig.savefig('predict.png')
             #img2 = Image.open("predict.png")
-            st.image(fig.show())
+            #st.image(fig.show())
+            st.plotly_chart(fig, use_container_width=True)
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
             os.remove('predict.mp3')
