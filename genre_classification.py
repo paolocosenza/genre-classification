@@ -2,6 +2,7 @@ import librosa, librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
+import plotly.plotly as py
 import os
 
 from IPython.display import Image
@@ -142,7 +143,7 @@ if __name__=='__main__':
             df = pd.DataFrame(dict(
                 r=probs,
                 theta=['blues','classical','country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']))
-            fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+            fig = py.line_polar(df, r='r', theta='theta', line_close=True)
             fig.show()
 
             st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
