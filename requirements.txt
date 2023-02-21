@@ -8,7 +8,7 @@ ipython-genutils
 pathlib
 fastai==2.7.10
 ipywidgets
-# youtube-dl
+youtube-dl
 streamlit==1.17.0
 SoundFile
 simpleaudio
