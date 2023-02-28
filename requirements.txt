@@ -18,3 +18,4 @@ ffmpeg
 scipy
 htbuilder
 plotly
+yt-dlg
