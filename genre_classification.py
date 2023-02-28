@@ -137,7 +137,7 @@ if __name__=='__main__':
 
             pred,pred_idx,probs = learn_inf.predict('spectrogram.png')
 
-            st.write('Looks like you were listening to a ' + pred + ' track! I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
+            st.write('Looks like you were listening to a ' + pred + ' track!') # I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
 
             df = pd.DataFrame(dict(
                 r=probs,
