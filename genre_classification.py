@@ -30,8 +30,7 @@ def run(video_url, filename):
         with youtube_dl.YoutubeDL(options) as ydl:
             ydl.download([video_info['webpage_url']])
     except:
-        st.write('The YouTube downloader service is temporarily out of service. A new patch should be released by the developers in the next few days (end of February).') 
-        #Video unavailable. Please refresh the page and try again with a different URL.')
+        st.write('Video unavailable. Please refresh the page and try again with a different URL.')
         return 1
 
 def image(src_as_string, **style):
