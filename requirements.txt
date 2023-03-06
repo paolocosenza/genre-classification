@@ -1,4 +1,5 @@
 librosa
+git+https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz
 numpy
 numpydoc
 matplotlib
@@ -8,7 +9,6 @@ ipython-genutils
 pathlib
 fastai==2.7.10
 ipywidgets
-yt-dlp==2023.02.17.334
 streamlit==1.17.0
 SoundFile
 simpleaudio
