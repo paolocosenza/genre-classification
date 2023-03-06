@@ -1,5 +1,5 @@
 librosa
-git+https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz
+git+https://github.com/yt-dlp/yt-dlp/archive@master
 numpy
 numpydoc
 matplotlib
