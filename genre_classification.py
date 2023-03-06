@@ -7,7 +7,7 @@ import os
 from IPython.display import Image
 from fastai.vision.all import *
 from ipywidgets import widgets
-import youtube_dl
+import yt_dlp as youtube_dl
 import streamlit as st
 import scipy.io as sio
 
