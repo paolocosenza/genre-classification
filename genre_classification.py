@@ -29,8 +29,8 @@ def run(video_url, filename):
         st.write('Downloading song, this may take some time...')
         with youtube_dl.YoutubeDL(options) as ydl:
             ydl.download([video_info['webpage_url']])
-    except:
-        st.write('Video unavailable. Please refresh the page and try again with a different URL.')
+    except Exception as e::
+        st.write('Video unavailable. Please refresh the page and try again with a different URL.\nError code:', e)
         return 1
 
 def image(src_as_string, **style):
