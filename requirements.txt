@@ -9,7 +9,7 @@ ipython-genutils
 pathlib
 fastai==2.7.10
 ipywidgets
-streamlit==1.17.0
+streamlit
 SoundFile
 simpleaudio
 cffi
