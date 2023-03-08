@@ -29,7 +29,7 @@ def run(video_url, filename):
         st.write('Downloading song, this may take some time...')
         with youtube_dl.YoutubeDL(options) as ydl:
             ydl.download([video_info['webpage_url']])
-    except Exception as e::
+    except Exception as e:
         st.write('Video unavailable. Please refresh the page and try again with a different URL.\nError code:', e)
         return 1
 
