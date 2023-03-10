@@ -103,6 +103,11 @@ def footer():
     layout(*myargs)
 
 if __name__=='__main__':
+    try:
+            os.remove('predict.mp3')
+            os.remove('spectrogram.png')
+    except:
+        pass
     st.title('Music genre classifier')
     link = '[How does it work?](https://github.com/paolocosenza/music-genre-classification#how-does-it-work)'
     st.markdown(link, unsafe_allow_html=True)
