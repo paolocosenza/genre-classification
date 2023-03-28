@@ -1,4 +1,4 @@
-# music-genre-classification
+# Music genre classification
 
 [Web application made with Streamlit](https://paolocosenza-music-genre-classifica-genre-classification-4un75w.streamlit.app/)
 
