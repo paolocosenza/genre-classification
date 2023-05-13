@@ -146,7 +146,7 @@ if __name__=='__main__':
             st.write('Looks like you were listening to a ' + pred + ' track!') # I can assess that with ' + str(round(float(probs[pred_idx])*100)) + '% probability.')
 
             df = pd.DataFrame(dict(
-                r=probs,
+                r=probs*100,
                 theta=['blues','classical','country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']))
             fig = plotly.express.line_polar(df, r='r', theta='theta', line_close=True)
             st.plotly_chart(fig, use_container_width=True)
